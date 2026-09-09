@@ -9,3 +9,6 @@ Static portfolio site for Glyphette (Anna Dutton). Hosted on GitHub Pages.
 
 ## Publishing
 Push to `main`. Settings > Pages > Source: Deploy from a branch, `main`, `/ (root)`. The `CNAME` file sets the custom domain.
+
+## Search engines
+While the site is in progress it is kept out of search results by `<meta name="robots" content="noindex, nofollow">` in `index.html`. `robots.txt` deliberately allows crawling so that tag can be read. To go live: delete that meta tag (and add it to any new page until then).

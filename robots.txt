@@ -1,0 +1,5 @@
+# Site is still in progress. Crawling is allowed on purpose so that
+# crawlers can read the "noindex" meta tag in index.html and keep the
+# pages out of search results. Blocking here would hide that tag.
+User-agent: *
+Allow: /
