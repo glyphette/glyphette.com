@@ -3,9 +3,9 @@
 Static portfolio site for Glyphette (Anna Dutton). Hosted on GitHub Pages.
 
 ## Editing
-- `index.html`: all content. Each work item is a `.card`; replace the placeholder `<span>` inside `.art` with `<img src="work/filename.jpg" alt="...">` and update title and client line.
+- `index.html`: all content. Each work item is a `.card` holding an `<img>` inside `.art`, plus a title and client line. Add `class="art fit"` when a piece should be shown whole on white instead of cropped to fill the card (posters, logos, page spreads); add `pad` alongside it to inset a logo.
 - `style.css`: colors and type. Teal #0CB4B7, ink #1C1B19, stone #6B6862, paper #FAF8F4.
-- Put artwork in `work/`.
+- Artwork lives in `work/`, exported to sRGB JPEG at 1200–1600px on the long edge. Convert CMYK sources first — browsers render CMYK JPEGs unpredictably.
 
 ## Publishing
 Push to `main`. Settings > Pages > Source: Deploy from a branch, `main`, `/ (root)`. The `CNAME` file sets the custom domain.
