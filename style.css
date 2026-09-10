@@ -28,11 +28,22 @@ h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw
    Slides differ in proportion, so contain letterboxes them; the fill stays
    transparent to let the paper show through rather than banding in white. */
 .hero-art.fit{background:transparent}
-.hero-art{position:relative}
-.hero-art img{position:absolute;inset:0;width:100%;height:100%}
-.hero-art img.fade{transition:opacity .5s ease}
-.hero-art img.is-out{opacity:0}
-@media (prefers-reduced-motion:reduce){.hero-art img.fade{transition:none}}
+/* overflow must clear .art's hidden or the tilt and its shadow get clipped. */
+.hero-art{position:relative;overflow:visible;perspective:1600px}
+.hero-art img{position:absolute;inset:0;width:100%;height:100%;border-radius:2px;
+  transform:rotateY(-6deg) rotateZ(-1deg);
+  /* drop-shadow traces the artwork's own edges; box-shadow would outline the
+     full letterboxed element box instead. Two passes: contact, then cast. */
+  filter:drop-shadow(0 1px 2px rgba(28,27,25,.13)) drop-shadow(0 14px 26px rgba(28,27,25,.17));
+  will-change:opacity,transform}
+.hero-art img.fade{transition:opacity .5s ease,transform .5s cubic-bezier(.22,.61,.36,1)}
+/* Outgoing slide drops back and turns a little further, so the incoming one
+   settles forward into place like a card being laid down. */
+.hero-art img.is-out{opacity:0;transform:rotateY(-12deg) rotateZ(-2deg) translateZ(-40px)}
+@media (prefers-reduced-motion:reduce){
+  .hero-art img.fade{transition:none}
+  .hero-art img.is-out{transform:rotateY(-6deg) rotateZ(-1deg)}
+}
 #work{padding-top:32px}
 .work-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #E6E2DA;padding-top:28px;margin-bottom:28px}
 h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:1.1}
