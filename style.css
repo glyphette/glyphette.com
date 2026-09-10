@@ -26,7 +26,10 @@ h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw
 .art.fit img{object-fit:contain}
 .art.fit.pad{padding:28px}
 .hero-art{font-size:13px}
-/* Two stacked layers so the hero can crossfade; script adds the second. */
+/* Two stacked layers so the hero can crossfade; script adds the second.
+   Slides differ in proportion, so contain letterboxes them; the fill stays
+   transparent to let the paper show through rather than banding in white. */
+.hero-art.fit{background:transparent}
 .hero-art{position:relative}
 .hero-art img{position:absolute;inset:0;width:100%;height:100%}
 .hero-art img.fade{transition:opacity .5s ease}
