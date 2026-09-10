@@ -42,7 +42,9 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-heig
 .two{padding-top:64px;padding-bottom:64px;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;border-top:1px solid #E6E2DA}
 #contact{padding-bottom:120px}
 .prose{display:flex;flex-direction:column;gap:20px;font-size:18px;line-height:1.55;max-width:620px;text-wrap:pretty}
-.email{font-family:'Instrument Serif',serif;font-size:36px;line-height:1.1}
+.email{font-family:'Instrument Serif',serif;font-size:36px;line-height:1.1;word-break:break-word}
+.email-fallback{font-family:'Instrument Serif',serif;font-size:28px;line-height:1.2}
+.email-fallback em{font-style:normal;font-size:.7em;color:#6B6862}
 footer{border-top:1px solid #E6E2DA}
 footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;gap:24px;font-size:14px;color:#6B6862;flex-wrap:wrap}
 footer a{color:#6B6862}
