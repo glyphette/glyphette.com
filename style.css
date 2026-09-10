@@ -17,12 +17,10 @@ h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw
 .btn{display:inline-flex;align-items:center;height:48px;padding:0 24px;border:1px solid #1C1B19;border-radius:4px;font-size:15px;font-weight:500}
 .btn:hover{border-color:#0CB4B7;color:#08898B}
 .btn.solid{background:#1C1B19;color:#FAF8F4}.btn.solid:hover{background:#0CB4B7;border-color:#0CB4B7;color:#FAF8F4}
-.art{background:repeating-linear-gradient(135deg,#EFECE6 0 10px,#E6E2DA 10px 20px);border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:12px;color:#6B6862;text-align:center}
-/* Padding belongs to the empty-slot placeholder, not to a filled card. */
-.art span{padding:16px}
+.art{border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .art img{width:100%;height:100%;object-fit:cover;display:block}
 /* .fit shows a whole page or mark rather than cropping to fill the card. */
-.art.fit{background:#fff;padding:0}
+.art.fit{background:#fff}
 .art.fit img{object-fit:contain}
 .art.fit.pad{padding:28px}
 .hero-art{font-size:13px}
