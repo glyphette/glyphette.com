@@ -8,10 +8,12 @@ body>*{position:relative;z-index:1}
 a{color:#1C1B19;text-decoration:none}a:hover{color:#08898B}
 h1,h2,h3,p{margin:0}
 .wrap{max-width:1200px;margin:0 auto;padding-left:40px;padding-right:40px}
-nav{position:sticky;top:0;z-index:10;background:rgba(250,248,244,.9);backdrop-filter:blur(8px);border-bottom:1px solid #E6E2DA}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px}
-nav img{height:34px;display:block}
-nav .links{display:flex;gap:28px;font-size:15px;font-weight:500}
+/* Scoped to the page's own nav: the category chips are a <nav> too, and
+   unscoped rules made them sticky and drew a rule under them. */
+body>nav{position:sticky;top:0;z-index:10;background:rgba(250,248,244,.9);backdrop-filter:blur(8px);border-bottom:1px solid #E6E2DA}
+body>nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px}
+body>nav img{height:34px;display:block}
+body>nav .links{display:flex;gap:28px;font-size:15px;font-weight:500}
 .hero{padding-top:120px;padding-bottom:96px;display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:end}
 .hero-text{display:flex;flex-direction:column;gap:28px}
 h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw,88px);line-height:1;letter-spacing:-.015em;text-wrap:balance}
@@ -74,5 +76,5 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-heig
 footer{border-top:1px solid #E6E2DA}
 footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;gap:24px;font-size:14px;color:#6B6862;flex-wrap:wrap}
 footer a{color:#6B6862}
-@media (max-width:820px){.wrap{padding-left:20px;padding-right:20px}.hero{grid-template-columns:1fr;padding-top:72px;padding-bottom:56px}.hero-art{max-width:320px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr;gap:24px}nav .links{gap:18px}}
+@media (max-width:820px){.wrap{padding-left:20px;padding-right:20px}.hero{grid-template-columns:1fr;padding-top:72px;padding-bottom:56px}.hero-art{max-width:320px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr;gap:24px}body>nav .links{gap:18px}}
 @media (max-width:520px){.grid{grid-template-columns:1fr}.email{font-size:28px}}
