@@ -14,7 +14,10 @@ body>nav{position:sticky;top:0;z-index:10;background:rgba(250,248,244,.9);backdr
 body>nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:16px;padding-bottom:16px}
 body>nav img{height:34px;display:block}
 body>nav .links{display:flex;gap:28px;font-size:15px;font-weight:500}
-.hero{padding-top:120px;padding-bottom:96px;display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:end}
+.hero{padding-top:72px;padding-bottom:96px;display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:end}
+/* Without this the logo's #top jump tucks the hero's first 67px under the
+   sticky nav, so the header looked shorter after clicking than on load. */
+#top{scroll-margin-top:92px}
 .hero-text{display:flex;flex-direction:column;gap:28px}
 h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw,88px);line-height:1;letter-spacing:-.015em;text-wrap:balance}
 .hero p{font-size:19px;line-height:1.5;color:#6B6862;max-width:560px;text-wrap:pretty}
@@ -76,15 +79,28 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-heig
 /* Source order is reversed; this flips it back for the reader only. */
 .rev{unicode-bidi:bidi-override;direction:rtl}
 /* Native <dialog>: Escape, focus trapping and the backdrop come for free. */
-.lightbox{border:0;padding:0;background:transparent;max-width:min(94vw,1180px);max-height:94vh;overflow:visible;color:#FAF8F4}
-.lightbox::backdrop{background:rgba(20,19,17,.74)}
-.lightbox-inner{position:relative;display:flex;flex-direction:column;gap:14px;align-items:center}
-.lightbox img{display:block;max-width:100%;max-height:80vh;width:auto;height:auto;border-radius:3px;box-shadow:0 24px 70px rgba(0,0,0,.45)}
-.lightbox-cap{font-size:14px;color:#E6E2DA;text-align:center;max-width:70ch}
-.lightbox-x{position:absolute;top:-16px;right:-16px;width:38px;height:38px;border-radius:50%;border:0;background:#FAF8F4;color:#1C1B19;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
-.lightbox-x:hover{background:#0CB4B7;color:#FAF8F4}
+/* body>*{position:relative} would otherwise beat the UA's position:fixed and
+   drop the dialog into document flow at the top of the page. */
+.lightbox{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;
+  border:0;padding:0;background:transparent;color:#FAF8F4;
+  display:grid;place-items:center;overflow:visible}
+.lightbox:not([open]){display:none}
+.lightbox::backdrop{background:rgba(20,19,17,.78)}
+.lightbox-inner{display:grid;place-items:center}
+/* Never larger than 90% of either axis; the smaller limit wins and the
+   browser keeps the aspect ratio, so nothing is upscaled past its frame. */
+.lightbox img{display:block;max-width:90vw;max-height:90vh;width:auto;height:auto;border-radius:3px;box-shadow:0 24px 70px rgba(0,0,0,.45)}
+/* Pinned rather than stacked, so a tall image never gets squeezed to fit it. */
+.lightbox-cap{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);
+  margin:0;font-size:14px;color:#E6E2DA;text-align:center;max-width:min(70ch,90vw);
+  text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.lightbox-x{position:fixed;top:18px;right:20px;width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(250,248,244,.25);background:rgba(250,248,244,.1);backdrop-filter:blur(6px);
+  color:#FAF8F4;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s ease,color .15s ease,border-color .15s ease}
+.lightbox-x:hover{background:#FAF8F4;color:#1C1B19;border-color:#FAF8F4}
 .card .art,.hero-art{cursor:zoom-in}
-@media (max-width:520px){.lightbox-x{top:-10px;right:-10px;width:34px;height:34px}}
+@media (max-width:520px){.lightbox-x{top:12px;right:12px;width:40px;height:40px}}
 @media (prefers-reduced-motion:no-preference){
   .lightbox[open]{animation:lb-in .18s ease both}
   .lightbox[open]::backdrop{animation:lb-fade .18s ease both}
@@ -94,5 +110,5 @@ h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-heig
 footer{border-top:1px solid #E6E2DA}
 footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;gap:24px;font-size:14px;color:#6B6862;flex-wrap:wrap}
 footer a{color:#6B6862}
-@media (max-width:820px){.wrap{padding-left:20px;padding-right:20px}.hero{grid-template-columns:1fr;padding-top:72px;padding-bottom:56px}.hero-art{max-width:320px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr;gap:24px}body>nav .links{gap:18px}}
+@media (max-width:820px){.wrap{padding-left:20px;padding-right:20px}.hero{grid-template-columns:1fr;padding-top:48px;padding-bottom:56px}.hero-art{max-width:320px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr;gap:24px}body>nav .links{gap:18px}}
 @media (max-width:520px){.grid{grid-template-columns:1fr}.email{font-size:28px}}
