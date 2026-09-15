@@ -149,6 +149,13 @@
   </div>
 </section>
 </main>
+<dialog class="lightbox" aria-label="Artwork preview">
+  <div class="lightbox-inner">
+    <button type="button" class="lightbox-x" aria-label="Close preview">&times;</button>
+    <img alt="">
+    <p class="lightbox-cap"></p>
+  </div>
+</dialog>
 <footer><div class="wrap"><span>© 2026 Glyphette</span><a href="https://annadutton.com">More about me and my work</a></div></footer>
 <script>
 /* Hero crossfade. Slides are gathered from the work grid rather than hard-coded:
@@ -215,6 +222,41 @@
   }
   warm(1);
   setInterval(step,3000);
+})();
+
+/* Click any artwork for a zoomed view. Built in script so the page still
+   works without it; <dialog> handles Escape and focus trapping natively. */
+(function(){
+  const dlg=document.querySelector('.lightbox');
+  if(!dlg||typeof dlg.showModal!=='function') return;
+  const big=dlg.querySelector('img'), cap=dlg.querySelector('.lightbox-cap');
+
+  function open(art){
+    // the hero stacks two layers; take whichever one is showing
+    const imgs=[...art.querySelectorAll('img')];
+    const src=imgs.find(i=>!i.classList.contains('is-out'))||imgs[0];
+    if(!src) return;
+    big.src=src.currentSrc||src.src;
+    big.alt=src.alt||'';
+    const card=art.closest('.card');
+    cap.textContent=card
+      ? [card.querySelector('.t'),card.querySelector('.m')].filter(Boolean).map(n=>n.textContent).join(' — ')
+      : (src.alt||'');
+    dlg.showModal();
+  }
+
+  document.querySelectorAll('.card .art, .hero-art').forEach(art=>{
+    art.tabIndex=0;
+    art.setAttribute('role','button');
+    art.addEventListener('click',()=>open(art));
+    art.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();open(art);}
+    });
+  });
+
+  dlg.querySelector('.lightbox-x').addEventListener('click',()=>dlg.close());
+  // anything outside the picture itself dismisses
+  dlg.addEventListener('click',e=>{ if(!e.target.closest('.lightbox-inner')) dlg.close(); });
 })();
 
 /* Highlights the chip for whichever category is currently in view. Purely
