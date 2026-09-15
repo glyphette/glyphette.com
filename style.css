@@ -51,12 +51,12 @@ h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,7vw
 .work-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #E6E2DA;padding-top:28px;margin-bottom:28px}
 h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:1.1}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{height:36px;display:inline-flex;align-items:center;padding:0 14px;border-radius:4px;border:1px solid #E6E2DA;background:transparent;color:#1C1B19;font-family:'Figtree',sans-serif;font-size:14px;font-weight:500;cursor:pointer}
+.chip{height:36px;display:inline-flex;align-items:center;padding:0 14px;border-radius:4px;border:1px solid #E6E2DA;background:transparent;color:#1C1B19;font-family:'Figtree',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap}
 .chip:hover{border-color:#0CB4B7}.chip.on{background:#1C1B19;color:#FAF8F4;border-color:#1C1B19}
+.chip.on:hover{color:#FAF8F4}
 .group{display:flex;flex-direction:column;gap:20px;padding:20px 0 48px}
-/* This display:flex outranks the UA sheet's [hidden]{display:none}, so the
-   filter's group.hidden toggle needs an author rule to actually take. */
-.group[hidden]{display:none}
+/* Clears the sticky nav when a chip link jumps to a category. */
+.group{scroll-margin-top:92px}
 .gh{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
 .gh h3{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6B6862}
 .gh span{font-size:14px;color:#6B6862}
